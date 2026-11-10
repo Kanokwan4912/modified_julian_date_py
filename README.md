@@ -37,3 +37,10 @@ microsecond, so the returned datetime is deterministic but may differ from an
 exact rational calculation by up to half a microsecond.  If you need exact
 rational arithmetic, do the conversion with `fractions.Fraction` before
 calling this function.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
